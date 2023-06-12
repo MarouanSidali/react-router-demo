@@ -10,6 +10,7 @@ import NewProducts from "./NewProducts";
 import "./App.css";
 import Users from "./Users";
 import UsersDetails from "./UsersDetails";
+import Profile from "./Profile";
 const LazyAbout = React.lazy(() => import("./About"));
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         </Route>
         <Route path="users" element={<Users />} />
         <Route path="users/:userId" element={<UsersDetails />} />
+        <Route path="profile" element={<Profile />} />
       </Routes>
     </>
   );

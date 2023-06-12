@@ -11,31 +11,36 @@ import "./App.css";
 import Users from "./Users";
 import UsersDetails from "./UsersDetails";
 import Profile from "./Profile";
+import { AuthProvider } from './auth.jsx'
+import Login from "./Login.js";
 const LazyAbout = React.lazy(() => import("./About"));
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/about"
-          element={
-            <React.Suspense fallback="Loading...">
-              <LazyAbout />
-            </React.Suspense>
-          }
-        />
-        <Route path="/order-summary" element={<OrderSummary />} />
-        <Route path="/products" element={<Products />}>
-          <Route path="featured-products" element={<FeaturedProducts />} />
-          <Route path="new-products" element={<NewProducts />} />
-        </Route>
-        <Route path="users" element={<Users />} />
-        <Route path="users/:userId" element={<UsersDetails />} />
-        <Route path="profile" element={<Profile />} />
-      </Routes>
+      <AuthProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/about"
+            element={
+              <React.Suspense fallback="Loading...">
+                <LazyAbout />
+              </React.Suspense>
+            }
+          />
+          <Route path="/order-summary" element={<OrderSummary />} />
+          <Route path="/products" element={<Products />}>
+            <Route path="featured-products" element={<FeaturedProducts />} />
+            <Route path="new-products" element={<NewProducts />} />
+          </Route>
+          <Route path="users" element={<Users />} />
+          <Route path="users/:userId" element={<UsersDetails />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="login" element={<Login />} />
+        </Routes>
+      </AuthProvider>
     </>
   );
 }
